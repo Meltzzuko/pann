@@ -51,31 +51,31 @@ router
         const id = parseInt(ctx.params.id)
         const rowUpdated = await findById(id).del()
         ctx.body = {statusCode: rowUpdated > 0 ? 1 : 0}
-      })
-      .get('/:id/results', prepareAnnoucementById, async (ctx, next) => {
+    })
+    .get('/:id/results', prepareAnnoucementById, async (ctx, next) => {
         const announcement = ctx.state.announcement
         ctx.body = await db('userResult').select('*').where({'announcementId': announcement.id}).orderBy('userCode', 'asc')
-      })
-      .post('/:id/results', prepareAnnoucementById, async (ctx, next) => {
+    })
+    .post('/:id/results', prepareAnnoucementById, async (ctx, next) => {
         const announcement = ctx.state.announcement
         const items = ctx.request.body as any[]    
         for(let item of items){
-          console.log('processing..', item)
-          const query = db('userResult').where({id: item.id})
-          if(item.id){
-            if(item._updated){
-              item = pick(item, USER_RESULT_BINDABLE)
-              await query.update(item)
-            }else if(item._deleted){
-              await query.del()
+            console.log('processing..', item)
+            const query = db('userResult').where({id: item.id})
+            if(item.id){
+                if(item._updated){
+                    item = pick(item, USER_RESULT_BINDABLE)
+                    await query.update(item)
+                }else if(item._deleted){
+                    await query.del()
+                }
+            }else{
+                item.announcementId = announcement.id
+                item.update_date_time = new Date()
+                await db('userResult').insert(item)
             }
-          }else{
-            item.announcementId = announcement.id
-            item.update_date_time = new Date()
-            await db('userResult').insert(item)
-          }
         }
         ctx.body = {statusCode: 1}
-      })
+    })
         
     export default router
