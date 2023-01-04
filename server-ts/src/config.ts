@@ -6,6 +6,7 @@ let appConfig = {
     clearDataBeforeLodingFixture: isProd ? false : true,
     dbConnectionInfo,
     
+    ssoIssuer: 'http://localhost:8888/realms/master'
 }
 
 export default appConfig
