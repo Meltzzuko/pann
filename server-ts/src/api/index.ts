@@ -1,6 +1,7 @@
 import Router from "koa-router"
-import annoucement from './announcement'
+import announcement from './announcement'
 import user_result from './user_result'
+import { authMiddleware } from "../auth"
 const router = new Router()
 
 router
@@ -8,7 +9,7 @@ router
     ctx.body = {msg: 'Hello world.'}
     })
 
-    .use('/api/announcement', annoucement.routes())
-    .use('/api/user_result', user_result.routes())
+    .use('/api/announcement', authMiddleware, announcement.routes())
+    .use('/api/user_result', authMiddleware, user_result.routes())
     
 export default router
