@@ -5,5 +5,5 @@ export default interface Announcement{
     remarkIfPositive: string
     remarkIfNegative: string
     pubDateTime: Date
-    useCode: string
+    userCode: string
 }
