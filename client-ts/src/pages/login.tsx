@@ -23,7 +23,7 @@ function Login() {
         })
       }, 1000)
     }
-  }, [auth, userInfo.ready])
+  }, [action, userInfo.ready])
 
   switch (auth.activeNavigator) {
     case "signinSilent":
