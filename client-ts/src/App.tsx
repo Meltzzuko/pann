@@ -1,9 +1,11 @@
 import Repo from './repositories'
 import { useEffect ,useState } from 'react';
 import Announcement from './models/Announcement';
+import UserResult from './models/UserResult';
 
 function App() {
   const [announcementList, setAnnouncementList] = useState<Announcement[]>([])
+  const [UserResultList, setuserResultList] = useState<UserResult[]>([])
 
   const fetchannouncementList = async () => {
     const result = await Repo.announcements.getAll()
@@ -12,8 +14,16 @@ function App() {
     }
   }
 
+  const fetchuserResultList = async () => {
+    const result = await Repo.userResults.getAll()
+    if(result){
+      setuserResultList(result)
+    }
+  }  
+
   useEffect(() => {
     fetchannouncementList()
+    fetchuserResultList()
   })
 
   return (
@@ -35,7 +45,19 @@ function App() {
           <p>UserCode : {announcement.userCode}</p>
         </div>
       ))}
+      <hr />
+      <div>
+        {UserResultList.map(userResult => (
+          <div key={userResult.id}>
+            <p>ID : {userResult.id}</p>
+            <p>Topic : {userResult.announcement.topic}</p>
+            <p>Result : {userResult.result}</p>
+            <p>UserCode : {userResult.userCode}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
+
 export default App;
