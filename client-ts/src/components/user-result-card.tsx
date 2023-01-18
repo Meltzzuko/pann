@@ -117,3 +117,5 @@ function UserResultCard(props: Prop) {
         </Box>
     )
 }
+
+export default UserResultCard
