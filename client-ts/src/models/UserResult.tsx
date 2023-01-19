@@ -13,10 +13,10 @@ export default interface UserResult{
     resultType: ResultType
     remark: string
     isPinned: boolean
-    viewDateTime: Date | null
-    ackDateTime: Date | null
-    updateDateTime: Date | null
-    expireDateTime: Date | null
+    viewDateTime: Date | Date
+    ackDateTime: Date | Date
+    updateDateTime: Date | Date
+    expireDateTime: Date | Date
     userCode: string
     _updated?: boolean
     _deleted?: boolean
