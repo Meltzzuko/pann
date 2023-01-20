@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    return knex.schema
+  return knex.schema
     .createTable('announcement', function (table) {
         table.increments('id').primary()
         table.string('topic',255).notNullable()
@@ -31,4 +31,4 @@ exports.down = function(knex) {
         .dropTable("announcement")
 }
 
-exports.config = { transaction: false} 
+exports.config = { transaction: false }
