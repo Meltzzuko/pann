@@ -49,7 +49,7 @@ function Login() {
         <Navigate to={backTo} replace />
       );
     } else {
-      return <div>Waiting for whoami</div>;
+      return <div className = 'loader'></div>;
     }
   }
 
