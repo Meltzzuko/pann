@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import { Button, Card, CardActionArea, colors, CardActions, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { PushPin, Close, CheckCircle } from '@mui/icons-material/';
 import UserResult, { ResultType } from "../models/UserResult";
@@ -56,7 +56,8 @@ function UserResultCard(props: Prop) {
         transition: 'all 0.2s ease-in-out',
         '&:hover': {
             transform: 'scale(1.025)',
-            boxShadow: '0px 0px 10px 0px ##60bff'
+            boxShadow: '0px 0px 10px 0px ##60bff',
+            backgroundColor: '#EAEFF9'
         }
     }}>
       <CardHeader
