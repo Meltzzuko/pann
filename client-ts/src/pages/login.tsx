@@ -55,7 +55,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <div className="logo-button-container">
+      <div className="box-container">
         <div className="content-container">
           <div className="logo-container">
             <img src={require('../image/psu1.png')} alt="Logo" className="logo-img" />
