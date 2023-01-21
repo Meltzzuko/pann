@@ -1,10 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
-import { AuthProviderProps } from "react-oidc-context";
-import { User } from "oidc-client-ts"
-
-interface CustomHeaders extends AxiosHeaders {
-    Authorization: string;
-}
+import axios from 'axios'
+import { AuthProviderProps } from 'react-oidc-context'
+import { User } from 'oidc-client-ts'
 
 const isDev = process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
@@ -12,30 +8,27 @@ export const oidcConfig: AuthProviderProps = {
     authority: 'http://localhost:8888/realms/master',
     client_id: 'pann',
     scope: 'openid profile offline_access',
-    redirect_uri: 'http://localhost:3000',    
-    monitorSession: true,
-};
+    redirect_uri: 'http://localhost:3000',
+    monitorSession: true
+}
 
 export const ax = axios.create({
     baseURL: 'http://localhost:8000'
 })
 
 ax.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
-        const oidcStorage  = sessionStorage.getItem(`oidc.user:${oidcConfig.authority}:${oidcConfig.client_id}`)
+    config => {
+        const oidcStorage = sessionStorage.getItem(`oidc.user:${oidcConfig.authority}:${oidcConfig.client_id}`)
         if(config.headers && oidcStorage){
             const user = User.fromStorageString(oidcStorage)
-            config.headers = {
-                ...config.headers,
-                'Authorization': `Bearer ${user.access_token}`
-            } as CustomHeaders;
+            config.headers['Authorization'] = `Bearer ${user.access_token}`;
         }
         return config
     },
     error => {
         return Promise.reject(error)
     }
-)  
+)
 
 const config = {
     isDev,
