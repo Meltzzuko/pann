@@ -19,7 +19,7 @@ function PannAppBar() {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ backgroundColor: '#27285C' }}>
             <Drawer 
                 anchor='left'
                 open={anchorNav}
