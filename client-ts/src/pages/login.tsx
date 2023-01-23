@@ -61,7 +61,7 @@ function Login() {
             <img src={require('../image/psu1.png')} alt="Logo" className="logo-img" />
           </div>
           <div className="text-content-wrapper">
-            <div className="text-content">Welcome to PSU Announcement</div>
+            <div className="hit-the-floor">Welcome to PSU Announcement</div>
           </div>
         </div>
         <div className="button-container">
